@@ -1,0 +1,91 @@
+// Prisma Schema untuk Website Umroh - Prisma 6
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Model Paket Umroh
+model Package {
+  id             Int       @id @default(autoincrement())
+  title          String    @db.VarChar(255)
+  slug           String    @unique @db.VarChar(255)
+  description    String?   @db.Text
+  duration       String    @db.VarChar(50)
+  price          Decimal   @db.Decimal(12, 2)
+  hotel          String    @db.Text
+  airline        String    @db.VarChar(200)
+  facilities     Json
+  quota          Int       @default(0)
+  image          String?   @db.VarChar(500)
+  departureDate  DateTime? @db.Date
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  orders Order[]
+
+  @@index([slug])
+  @@index([isActive])
+  @@index([departureDate])
+}
+
+// Model Order/Pemesanan
+model Order {
+  id              Int      @id @default(autoincrement())
+  orderNumber     String   @unique @db.VarChar(50)
+  packageId       Int
+  packageTitle    String   @db.VarChar(255)
+  packagePrice    Decimal  @db.Decimal(12, 2)
+  packageDuration String?  @db.VarChar(50)
+  fullName        String   @db.VarChar(255)
+  email           String?  @db.VarChar(255)
+  phone           String   @db.VarChar(20)
+  totalPassengers Int      @default(1)
+  notes           String?  @db.Text
+  status          String   @default("PENDING") @db.VarChar(20)
+  createdAt       DateTime @default(now())
+
+  package Package @relation(fields: [packageId], references: [id], onDelete: Restrict)
+
+  @@index([orderNumber])
+  @@index([status])
+  @@index([createdAt])
+  @@index([packageId])
+}
+
+// Model Popup Promo
+model Popup {
+  id        Int       @id @default(autoincrement())
+  title     String    @db.VarChar(255)
+  content   String    @db.Text
+  image     String?   @db.VarChar(500)
+  ctaText   String?   @db.VarChar(100)
+  ctaLink   String?   @db.VarChar(500)
+  isActive  Boolean   @default(true)
+  startDate DateTime? @db.Date
+  endDate   DateTime? @db.Date
+  createdAt DateTime  @default(now())
+
+  @@index([isActive])
+  @@index([startDate, endDate])
+}
+
+// Model Settings Website
+model Settings {
+  id          Int      @id @default(autoincrement())
+  companyName String?  @db.VarChar(255)
+  tagline     String?  @db.VarChar(255)
+  address     String?  @db.Text
+  phone       String?  @db.VarChar(20)
+  whatsapp    String?  @db.VarChar(20)
+  email       String?  @db.VarChar(255)
+  instagram   String?  @db.VarChar(100)
+  facebook    String?  @db.VarChar(100)
+  aboutUs     String?  @db.Text
+  logo        String?  @db.VarChar(500)
+  createdAt   DateTime @default(now())
+}

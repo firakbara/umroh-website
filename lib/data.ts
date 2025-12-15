@@ -1,0 +1,80 @@
+export const packages = [
+    {
+        id: 1,
+        slug: "paket-hemat-9-hari",
+        title: "Paket Umroh Hemat",
+        price: "Rp 24.500.000",
+        duration: "9",
+        date: "25 Januari 2026",
+        hotel: "Hotel Bintang 3",
+        maskapai: "Lion Air / Setaraf",
+        image: "/images/umrah-hemat.png",
+        description: "Paket hemat solusi ibadah terjangkau dengan fasilitas nyaman. Jarak hotel ke masjid hanya 500m (shuttle bus tersedia).",
+        facilities: ["Makan 3x Sehari", "Visa Umroh", "Mutawwif Berpengalaman", "City Tour Mekkah & Madinah"]
+    },
+    {
+        id: 2,
+        slug: "paket-reguler-9-hari",
+        title: "Paket Umroh Reguler",
+        price: "Rp 29.900.000",
+        duration: "9",
+        date: "10 Februari 2026",
+        hotel: "Hotel Bintang 4",
+        maskapai: "Saudi Airlines",
+        image: "/images/umrah-reguler.png",
+        description: "Nikmati kenyamanan beribadah dengan penerbangan langsung tanpa transit. Hotel bintang 4 pelataran masjid.",
+        facilities: ["Makan 3x Sehari (Menu Indonesia)", "Visa Umroh", "Mutawwif Senior", "City Tour + Thaif", "Lounge Bandara"]
+    },
+    {
+        id: 3,
+        slug: "paket-vip-12-hari",
+        title: "Paket Umroh VIP",
+        price: "Rp 35.500.000",
+        duration: "12",
+        date: "15 Maret 2026",
+        hotel: "Hotel Bintang 5 (Depan Masjid)",
+        maskapai: "Garuda Indonesia",
+        image: "/images/umrah-vip.png",
+        description: "Fasilitas terbaik untuk tamu Allah. Hotel 0 km dari masjid, penerbangan business class option tersedia.",
+        facilities: ["Hotel *5 View Ka'bah", "Makan Fullboard", "Handling VIP", "Upgrade Kamar (Optional)", "Private Mutawwif"]
+    },
+    {
+        id: 4,
+        slug: "paket-plus-turki-12-hari",
+        title: "Paket Umroh Plus Turki",
+        price: "Rp 42.500.000",
+        duration: "12",
+        date: "20 April 2026",
+        hotel: "Hotel Bintang 5",
+        maskapai: "Turkish Airlines",
+        image: "/images/umrah-turkey.png",
+        description: "Ibadah umroh sekaligus tadabbur alam menikmati keindahan sejarah Islam di Turki (Istanbul & Bursa).",
+        facilities: ["Hotel *4/*5", "City Tour Istanbul", "Bosphorus Cruise", "Visa Turki", "Makan Fullboard"]
+    },
+    {
+        id: 5,
+        slug: "paket-ramadhan-akhir-15-hari",
+        title: "Paket Ramadhan Lailatul Qadar",
+        price: "Rp 45.000.000",
+        duration: "15",
+        date: "10 Ramadhan 2026",
+        hotel: "Hotel Bintang 4",
+        maskapai: "Emirates",
+        image: "/images/umrah-ramadhan.png",
+        description: "Raih pahala 1000 bulan dengan beribadah di 10 malam terakhir Ramadhan di Tanah Suci.",
+        facilities: ["Hotel Dekat Masjid", "Iftar & Sahur Bersama", "Itikaf Program", "Mutawwif Pembimbing Ibadah"]
+    },
+    {
+        id: 6,
+        slug: "paket-syawal-9-hari",
+        title: "Paket Umroh Syawal",
+        price: "Rp 26.500.000",
+        duration: "9",
+        date: "5 Syawal 2026",
+        hotel: "Hotel Bintang 3",
+        maskapai: "Lion Air",
+        image: "/images/umrah-syawal.png",
+        description: "Umroh dengan suasana yang lebih lengang dan udara yang sejuk di bulan Syawal.",
+        facilities: ["Makan 3x Sehari", "Visa Umroh", "Mutawwif Berpengalaman", "City Tour Thaif"]
+    }
+];
