@@ -29,6 +29,8 @@ RUN npx prisma generate
 # Set environment untuk build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+# Skip Google Fonts download saat build (akan di-download saat runtime)
+ENV NEXT_FONT_GOOGLE_MOCKED_RESPONSES='[{"url":"https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap","css":"","fallbackFonts":["system-ui","arial"]},{"url":"https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap","css":"","fallbackFonts":["monospace"]}]'
 
 # Build Next.js dengan standalone output
 RUN npm run build
