@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ModalProvider } from "@/context/ModalContext";
 
-const geistSans = Geist({
+// Use system fonts - no external dependencies
+const geistSans = localFont({
+  src: [],
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: [],
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
 });
 
 export const metadata: Metadata = {
