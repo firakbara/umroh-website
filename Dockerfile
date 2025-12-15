@@ -2,29 +2,21 @@
 FROM node:20-alpine AS deps
 
 # Install dependencies untuk native modules
-RUN apk add --no-cache libc6-compat curl
+RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-# Install Bun untuk package manager yang lebih cepat
-RUN curl -fsSL https://bun.sh/install | bash
-ENV PATH="/root/.bun/bin:${PATH}"
-
 # Copy package files
-COPY package.json bun.lock* ./
+COPY package.json bun.lock* package-lock.json* ./
 
-# Install dependencies
-RUN bun install --frozen-lockfile --production=false
+# Install dependencies dengan npm
+RUN npm ci --omit=dev --ignore-scripts || \
+    (npm install --production --ignore-scripts && echo "Fallback to npm install")
 
 # Tahap 2: Builder
 FROM node:20-alpine AS builder
 
 WORKDIR /app
-
-# Install Bun
-RUN apk add --no-cache curl
-RUN curl -fsSL https://bun.sh/install | bash
-ENV PATH="/root/.bun/bin:${PATH}"
 
 # Copy dependencies dari stage deps
 COPY --from=deps /app/node_modules ./node_modules
@@ -39,15 +31,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
 # Build Next.js dengan standalone output
-RUN bun run build
+RUN npm run build
 
 # Tahap 3: Runner (Production)
 FROM node:20-alpine AS runner
 
 WORKDIR /app
-
-# Install hanya dependencies yang diperlukan untuk runtime
-RUN apk add --no-cache curl
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
