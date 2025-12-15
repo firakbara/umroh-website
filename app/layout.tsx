@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ModalProvider } from "@/context/ModalContext";
-
-// Use system fonts - no external dependencies
-const geistSans = localFont({
-  src: [],
-  variable: "--font-geist-sans",
-  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-});
-
-const geistMono = localFont({
-  src: [],
-  variable: "--font-geist-mono",
-  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <ModalProvider>
           <Navbar />
 
