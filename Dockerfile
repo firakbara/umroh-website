@@ -9,9 +9,9 @@ WORKDIR /app
 # Copy package files
 COPY package.json bun.lock* package-lock.json* ./
 
-# Install dependencies dengan npm
-RUN npm ci --omit=dev --ignore-scripts || \
-    (npm install --production --ignore-scripts && echo "Fallback to npm install")
+# Install ALL dependencies (including dev) yang diperlukan untuk build
+RUN npm install --ignore-scripts || \
+    (npm ci --ignore-scripts && echo "Installed with npm ci")
 
 # Tahap 2: Builder
 FROM node:20-alpine AS builder
