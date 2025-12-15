@@ -73,9 +73,9 @@ export default function Navbar() {
                     />
 
                     {/* Menu Panel */}
-                    <div className="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 md:hidden animate-in slide-in-from-right duration-300">
+                    <div className="fixed top-0 right-0 h-full w-72 bg-white/80 backdrop-blur-xl shadow-2xl z-50 md:hidden animate-in slide-in-from-right duration-300 border-l border-white/20">
                         {/* Header */}
-                        <div className="flex items-center justify-between p-4 border-b">
+                        <div className="flex items-center justify-between p-4 border-b border-white/20 bg-white/30">
                             <span className="font-bold text-lg text-primary">Menu</span>
                             <Button
                                 variant="ghost"
