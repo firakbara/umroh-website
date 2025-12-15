@@ -1,11 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Phone } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { useModal } from "@/context/ModalContext";
+
 export default function Navbar() {
     const { openModal } = useModal();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
     return (
         <nav className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -22,6 +26,7 @@ export default function Navbar() {
                         <span className="font-bold text-xl text-primary">Berkah Umroh</span>
                     </Link>
                 </div>
+
                 {/* DESKTOP MENU (Hidden on Mobile) */}
                 <div className="hidden md:flex items-center gap-8">
                     <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
@@ -37,6 +42,7 @@ export default function Navbar() {
                         Kontak
                     </Link>
                 </div>
+
                 {/* CTA BUTTON & MOBILE MENU */}
                 <div className="flex items-center gap-4">
                     {/* Button WA visible on Desktop */}
@@ -44,12 +50,90 @@ export default function Navbar() {
                         <Phone className="w-4 h-4" />
                         Hubungi WA
                     </Button>
-                    {/* Mobile Menu Toggle (Simple) */}
-                    <Button variant="ghost" size="icon" className="md:hidden">
+
+                    {/* Mobile Menu Toggle */}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="md:hidden"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
                         <Menu className="w-6 h-6" />
                     </Button>
                 </div>
             </div>
+
+            {/* MOBILE MENU PANEL */}
+            {mobileMenuOpen && (
+                <>
+                    {/* Backdrop */}
+                    <div
+                        className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                        onClick={() => setMobileMenuOpen(false)}
+                    />
+
+                    {/* Menu Panel */}
+                    <div className="fixed top-0 right-0 h-full w-72 bg-white shadow-2xl z-50 md:hidden animate-in slide-in-from-right duration-300">
+                        {/* Header */}
+                        <div className="flex items-center justify-between p-4 border-b">
+                            <span className="font-bold text-lg text-primary">Menu</span>
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                <X className="w-6 h-6" />
+                            </Button>
+                        </div>
+
+                        {/* Menu Items */}
+                        <div className="flex flex-col p-4 space-y-4">
+                            <Link
+                                href="/"
+                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                🏠 Beranda
+                            </Link>
+                            <Link
+                                href="#paket"
+                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                📦 Paket Umroh
+                            </Link>
+                            <Link
+                                href="#tentang"
+                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                ℹ️ Tentang Kami
+                            </Link>
+                            <Link
+                                href="#kontak"
+                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                onClick={() => setMobileMenuOpen(false)}
+                            >
+                                📞 Kontak
+                            </Link>
+
+                            {/* CTA Button in Mobile Menu */}
+                            <div className="pt-4 border-t">
+                                <Button
+                                    className="w-full gap-2"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        openModal();
+                                    }}
+                                >
+                                    <Phone className="w-4 h-4" />
+                                    Hubungi WhatsApp
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
         </nav>
     );
 }
