@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, Phone, X, Home, Package, Info } from "lucide-react";
 import { useModal } from "@/context/ModalContext";
 
 export default function Navbar() {
@@ -86,35 +86,38 @@ export default function Navbar() {
                             </Button>
                         </div>
 
-                        {/* Menu Items */}
                         <div className="flex flex-col p-4 space-y-4">
                             <Link
                                 href="/"
-                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                className="flex items-center gap-3 text-base font-medium hover:text-primary transition-colors py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                🏠 Beranda
+                                <Home className="w-5 h-5" />
+                                Beranda
                             </Link>
                             <Link
                                 href="#paket"
-                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                className="flex items-center gap-3 text-base font-medium hover:text-primary transition-colors py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                📦 Paket Umroh
+                                <Package className="w-5 h-5" />
+                                Paket Umroh
                             </Link>
                             <Link
                                 href="#tentang"
-                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                className="flex items-center gap-3 text-base font-medium hover:text-primary transition-colors py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                ℹ️ Tentang Kami
+                                <Info className="w-5 h-5" />
+                                Tentang Kami
                             </Link>
                             <Link
                                 href="#kontak"
-                                className="text-base font-medium hover:text-primary transition-colors py-2"
+                                className="flex items-center gap-3 text-base font-medium hover:text-primary transition-colors py-2"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
-                                📞 Kontak
+                                <Phone className="w-5 h-5" />
+                                Kontak
                             </Link>
 
                             {/* CTA Button in Mobile Menu */}

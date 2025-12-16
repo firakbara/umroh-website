@@ -1,15 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 export default function Footer() {
   return (
     <footer id="kontak" className="bg-slate-900 text-slate-200 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          
+
           {/* Kolom 1: Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="text-2xl">🕋</span>
+              <Image src="/images/brand-logo.png" alt="Berkah Umroh" width={32} height={32} className="object-contain" />
               <span className="text-xl font-bold text-white">Berkah Umroh</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
@@ -40,7 +41,7 @@ export default function Footer() {
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span>Jl. H. Nawi Raya No. 12, Jakarta Selatan, DKI Jakarta 12420</span>
+                <span>Jl. Sunan Kudus No. 45, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59315</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
@@ -50,7 +51,7 @@ export default function Footer() {
                 <Mail className="w-5 h-5 text-primary shrink-0" />
                 <span>info@berkahumroh.id</span>
               </div>
-              
+
               {/* Social Media */}
               <div className="flex gap-4 pt-2">
                 <Link href="#" className="hover:text-white transition-colors">
